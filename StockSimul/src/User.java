@@ -1,7 +1,10 @@
+import java.util.Random;
 
 public class User extends HTS {
 	
 	public static void main(String[] args) {
+		
+		Random rand = new Random();
 		
 		// create instance
  		HTS hts = new HTS();
@@ -14,7 +17,7 @@ public class User extends HTS {
 		//local variables
 		int comindex = 1;
 		int num1 = 10;
-		int num2 = 6;
+		int num2 = 10;
 		
 		// first condition
 		hts.seedCheck(seed);
@@ -26,6 +29,8 @@ public class User extends HTS {
 		System.out.println("------------------------");
 		System.out.println("");
 		
+		stock.sc();
+		
 		// buy testing
 		seed = hts.buy(seed, wallet, comindex, stock.stockCall(comindex), num1); 
 		hts.seedCheck(seed);
@@ -33,8 +38,6 @@ public class User extends HTS {
 		stock.stockCheck();
 		System.out.println("");
 		hts.walletCheck(wallet);
-		
-		stock.sc();
 		
 		System.out.println("------------------------");
 		System.out.println("");
