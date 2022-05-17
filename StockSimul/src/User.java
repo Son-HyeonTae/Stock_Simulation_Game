@@ -25,7 +25,5 @@ public class User extends HTS {
 		hts.seedcheck(seed);
 		hts.walletcheck(wallet);
 		
-
-		System.out.println(st.stockCall(1));
 	}
 }

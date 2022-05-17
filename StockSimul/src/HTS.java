@@ -15,6 +15,7 @@ public class HTS extends StockGame {
 		System.out.println("");
 	}
 	
+	// seed money / company list / company index / stock value / buy counter
 	int buy(int seed, int[] arr, int comindex, int value, int num) {
 		if (value * num <= 0 || value * num > seed ) {
 			return -1;

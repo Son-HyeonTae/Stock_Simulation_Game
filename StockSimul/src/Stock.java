@@ -5,6 +5,7 @@ public class Stock extends Exchange {
 	StockGame sg = new StockGame();
 	int stock[] = sg.stock;
 	
+	// initialize
 	void setting() {
 		stock = new int[] {0, 10000, 20000, 30000, 40000, 50000};
 	}
