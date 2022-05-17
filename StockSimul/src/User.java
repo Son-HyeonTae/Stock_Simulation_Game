@@ -5,25 +5,46 @@ public class User extends HTS {
 		
 		// create instance
  		HTS hts = new HTS();
-		int seed = hts.seed;
-		int wallet[] = hts.wallet;
+ 		int seed = hts.seed;
+ 		int wallet[] = hts.wallet;
+ 		
+		Stock stock = new Stock();		
+		stock.setting();		
 		
-		Stock st = new Stock();
-		st.setting();		
+		//local variables
+		int comindex = 1;
+		int num1 = 10;
+		int num2 = 6;
 		
 		// first condition
-		hts.seedcheck(seed);
-		hts.walletcheck(wallet);
+		hts.seedCheck(seed);
+		System.out.println("");
+		stock.stockCheck();
+		System.out.println("");
+		hts.walletCheck(wallet);
+		
+		System.out.println("------------------------");
+		System.out.println("");
 		
 		// buy testing
-		seed = hts.buy(seed, wallet, 1, st.stockCall(1), 10); 
-		hts.seedcheck(seed);
-		hts.walletcheck(wallet);
+		seed = hts.buy(seed, wallet, comindex, stock.stockCall(comindex), num1); 
+		hts.seedCheck(seed);
+		System.out.println("");
+		stock.stockCheck();
+		System.out.println("");
+		hts.walletCheck(wallet);
+		
+		stock.sc();
+		
+		System.out.println("------------------------");
+		System.out.println("");
 		
 		//sell testing
-		seed = hts.sell(seed, wallet, 1, st.stockCall(1), 6);
-		hts.seedcheck(seed);
-		hts.walletcheck(wallet);
-		
+		seed = hts.sell(seed, wallet, comindex, stock.stockCall(comindex), num2);
+		hts.seedCheck(seed);
+		System.out.println("");
+		stock.stockCheck();
+		System.out.println("");
+		hts.walletCheck(wallet);
 	}
 }
