@@ -23,19 +23,19 @@ public class User extends HTS {
  		stock.valueCheck();
  		System.out.println("");
  		stock.newsCheck();
- 		System.out.println("\n<<<1set>>>");
+ 		System.out.println("\n1set");
  		stock.stockWave();
  		stock.newsCheck();
- 		System.out.println("\n<<<2set>>>");
+ 		System.out.println("\n2set");
  		stock.stockWave();
  		stock.newsCheck();
- 		System.out.println("\n<<<3set>>>");
+ 		System.out.println("\n3set");
  		stock.stockWave();
  		stock.newsCheck();
- 		System.out.println("\n<<<4set>>>");
+ 		System.out.println("\n4set");
  		stock.stockWave();
  		stock.newsCheck();
- 		System.out.println("\n<<<5set>>>");
+ 		System.out.println("\n5set");
  		stock.stockWave();
 	}
 }
