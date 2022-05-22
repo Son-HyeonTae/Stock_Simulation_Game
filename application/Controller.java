@@ -112,7 +112,7 @@ public class Controller implements Initializable {
 				stock.setting();
 				
 				if(event.getClickCount()>=1) {
-					int comIndex = stocklist.getSelectionModel().getSelectedIndex();		
+					comIndex = stocklist.getSelectionModel().getSelectedIndex();		
 					stockvalue.setText("");
 
 					presentValue.setText(String.valueOf(stock.value[comIndex]));
