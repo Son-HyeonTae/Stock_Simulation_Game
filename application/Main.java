@@ -13,9 +13,9 @@ public class Main extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("draft.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("StartWindow.fxml"));
 		primaryStage.setScene(new Scene(root));
-		primaryStage.setTitle("StockSimulator SSG");
+		primaryStage.setTitle("StockSimulator SSG - Nickname Window");
 		primaryStage.show();
 		
 	}
