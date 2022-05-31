@@ -11,10 +11,10 @@ public class HomeTradeSystem extends StockGame {
 	
 	// local variable
 	int seed = 1000000;
+	static int newseed;
 	                                                           //quantity
 	int buy(int seed, int[] wallet, int companyIndex, int value, int num) {
 		if (value * num <= 0 || value * num > seed ) {
-			System.out.println("\"Invalid Order\"");
 			return seed;
 		}
 		wallet[companyIndex] += num;
@@ -24,7 +24,6 @@ public class HomeTradeSystem extends StockGame {
 	
 	int sell(int seed, int[] wallet, int companyIndex, int value, int num) {
 		if (value * num <= 0 || num <= 0 || wallet[companyIndex] < num) {
-			System.out.println("\"Invalid Order\"");
 			return seed;
 		}
 		wallet[companyIndex] -= num;

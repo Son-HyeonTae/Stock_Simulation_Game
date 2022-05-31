@@ -1,14 +1,21 @@
 package application;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.StackedBarChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
@@ -16,23 +23,30 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 public class MainWindow implements Initializable {
    
    // create instance
-   Trader user = new Trader();
+   Stock stock = new Stock();
+   Trader trader = new Trader();
    Market exchange = new Market();
    Scanner scanner = new Scanner(System.in);
-   HomeTradeSystem hts = new HomeTradeSystem();
-   Stock stock = new Stock();
    StartWindow windowcontroller = new StartWindow();
+   HomeTradeSystem homeTradeSystem = new HomeTradeSystem();
    
    // local variable
-   String[] strArrayList = exchange.company;
-   int seed = hts.seed;
-   int wallet[] = hts.wallet;
+   int turnOver = 5;
+   int turnCount = 0;
    int companyIndex = 0;
+   int seed = homeTradeSystem.seed;
+   int wallet[] = homeTradeSystem.wallet;
+   String[] strArrayList = exchange.company;
 
+   public void closeStage() {
+	   Stage stagewc = (Stage) turnoverbtn.getScene().getWindow();
+	   stagewc.close();
+   }
    
    @FXML 
    public ListView<String> stocklist;
@@ -43,27 +57,48 @@ public class MainWindow implements Initializable {
    public void selectBuyButton(ActionEvent event) {
       int num = Integer.valueOf(stockvalue.getText());   
       
-      seed = hts.buy(seed, wallet, companyIndex , stock.stockValue(companyIndex), num); 
+      seed = homeTradeSystem.buy(seed, wallet, companyIndex , stock.stockValue(companyIndex), num); 
       
       havemoney.setText(String.valueOf(seed));
       havestock.setText(String.valueOf(wallet[companyIndex]));
+      
+      homeTradeSystem.newseed = seed;
       }
    
    @FXML
    public void selectSellButton(ActionEvent event) {   
       int num = Integer.valueOf(stockvalue.getText());      
       
-      seed = hts.sell(seed, wallet, companyIndex, stock.stockValue(companyIndex), num); 
+      seed = homeTradeSystem.sell(seed, wallet, companyIndex, stock.stockValue(companyIndex), num); 
       
       havemoney.setText(String.valueOf(seed));
       havestock.setText(String.valueOf(wallet[companyIndex]));
+      System.out.println(seed);
+      System.out.println(wallet[companyIndex]);
+      
+      homeTradeSystem.newseed = seed;
    }
    
    @FXML
-   public void turnOver(ActionEvent event) {   
+   public void turnOver() {   
       stock.stockWave();
+      turnCount++;
+         if (turnCount==turnOver) {
+          FXMLLoader loader = new FXMLLoader(getClass().getResource("ResultWindow.fxml"));
+          Parent root;
+          Stage stage;
+          try {
+             root = (Parent)loader.load();
+             stage = new Stage();
+             stage.setTitle("StockSimulator SSG");
+             stage.setScene(new Scene(root));
+             stage.show();
+          } catch(IOException ex) {
+          }
+          closeStage();
+         }
       }
-      
+   
    @FXML
    public void chartOutput() {
       final XYChart.Series<String, Number> series1 = new XYChart.Series<>();
@@ -82,7 +117,7 @@ public class MainWindow implements Initializable {
    public void initialize(URL location, ResourceBundle resources) {
       
       stock.setting();
-      showname.setText(user.nickname);
+      showname.setText(trader.nickname);
       havemoney.setText(Integer.toString(seed));
       
       chartOutput();
@@ -108,7 +143,6 @@ public class MainWindow implements Initializable {
 
    @FXML
    private StackedBarChart<String, Number> chart;
-   
    @FXML
    private TextField presentValue;
    @FXML

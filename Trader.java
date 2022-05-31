@@ -7,7 +7,6 @@ public class Trader extends HomeTradeSystem {
 	public static void main(String[] args) {
 		
 		// create instance
-		StockGame stockgame = new StockGame();
 		HomeTradeSystem hts = new HomeTradeSystem();
 		Stock stock = new Stock();
 		

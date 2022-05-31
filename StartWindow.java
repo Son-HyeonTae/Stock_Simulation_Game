@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 public class StartWindow {
 	
 	Stock stock = new Stock();
-	Trader user = new Trader();
+	Trader trader = new Trader();
 	Market exchange = new Market();
 	
 	String inputValue;
@@ -35,9 +35,9 @@ public class StartWindow {
 	@FXML
 	public void getnickName(ActionEvent event) {
 		inputValue = getnickNameField.getText();
-		user.nickname = inputValue;
+		trader.nickname = inputValue;
 		
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("draft.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("MainWindow.fxml"));
 		Parent root1;
 		Stage stage;
 		try {
