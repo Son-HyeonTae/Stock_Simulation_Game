@@ -1,18 +1,19 @@
 package application;
 
-public class User extends HTS {
+public class Trader extends HomeTradeSystem {
+	
+	static String nickname = null;
 	
 	public static void main(String[] args) {
 		
 		// create instance
 		StockGame stockgame = new StockGame();
-		HTS hts = new HTS();
+		HomeTradeSystem hts = new HomeTradeSystem();
 		Stock stock = new Stock();
 		
 		// local variable
  		int seed = hts.seed;
  		int wallet[] = hts.wallet;
- 		
  		
  		
  		//-----------------------------------------------------

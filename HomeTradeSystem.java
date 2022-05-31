@@ -1,18 +1,17 @@
 package application;
 
-public class HTS extends StockGame {
+public class HomeTradeSystem extends StockGame {
 	
 	// create instance
 	StockGame stockgame = new StockGame();
 	int wallet[] = stockgame.stock;
 
-	Exchange exchange = new Exchange();
+	Market exchange = new Market();
 	String company[] = exchange.company;
 	
 	// local variable
 	int seed = 1000000;
-	
-	// seed money / company list / company index / stock value / buy counter
+	                                                           //quantity
 	int buy(int seed, int[] wallet, int companyIndex, int value, int num) {
 		if (value * num <= 0 || value * num > seed ) {
 			System.out.println("\"Invalid Order\"");

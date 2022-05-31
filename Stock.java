@@ -2,7 +2,7 @@ package application;
 
 import java.util.Random;
 
-public class Stock extends Exchange {
+public class Stock extends Market {
 	
 	// create instance
 	StockGame stockgame = new StockGame();
