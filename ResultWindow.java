@@ -13,13 +13,29 @@ import application.HomeTradeSystem;
 
 public class ResultWindow implements Initializable {
 	
-	// create instance
+	// create instances
 	Stage stage = new Stage();
 	Trader trader = new Trader();
 	MainWindow mainWindow = new MainWindow();
 	HomeTradeSystem hts = new HomeTradeSystem();
-	double percent = (HomeTradeSystem.newseed-1000000)/10000;
 	
+	// local value
+	double percent = (HomeTradeSystem.newseed-1000000)/10000;
+
+	
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		nickname.setText(trader.nickname);
+		lastseed.setText(String.valueOf(HomeTradeSystem.newseed));
+		rate.setText(String.valueOf((int)(percent)));
+	}
+
+	@FXML
+	public void exit() {
+			Platform.exit();
+	}
+	
+	// elements
 	@FXML
 	private Button exit;
 	@FXML
@@ -30,16 +46,4 @@ public class ResultWindow implements Initializable {
 	private TextField lastseed;
 	@FXML
 	private TextField rate;
-	
-	@FXML
-	public void exit() {
-			Platform.exit();
-	}
-
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		nickname.setText(trader.nickname);
-		lastseed.setText(String.valueOf(HomeTradeSystem.newseed));
-		rate.setText(String.valueOf((int)(percent)));
-	}
 }

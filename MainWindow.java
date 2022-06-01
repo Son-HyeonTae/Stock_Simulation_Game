@@ -27,7 +27,7 @@ import javafx.stage.Stage;
 
 public class MainWindow implements Initializable {
    
-   // create instance
+   // create instances
    Stock stock = new Stock();
    Trader trader = new Trader();
    Market exchange = new Market();
@@ -35,7 +35,7 @@ public class MainWindow implements Initializable {
    StartWindow windowcontroller = new StartWindow();
    HomeTradeSystem homeTradeSystem = new HomeTradeSystem();
    
-   // local variable
+   // local variables
    int turnOver = 5;
    int turnCount = 0;
    int companyIndex = 0;
@@ -43,26 +43,51 @@ public class MainWindow implements Initializable {
    int wallet[] = homeTradeSystem.wallet;
    String[] strArrayList = exchange.company;
 
+   // local methods
    public void closeStage() {
 	   Stage stagewc = (Stage) turnoverbtn.getScene().getWindow();
 	   stagewc.close();
    }
    
+   
+   @Override 
+   public void initialize(URL location, ResourceBundle resources) {
+      
+      showname.setText(trader.nickname);
+      havemoney.setText(Integer.toString(seed));
+      stock.setting();
+      
+      stocklist.setItems(FXCollections.observableArrayList(strArrayList));
+      stocklist.setOnMouseClicked(new EventHandler<MouseEvent>()
+      {
+         @Override
+         public void handle(MouseEvent event) {
+            if(event.getClickCount()>=1) {
+               companyIndex = stocklist.getSelectionModel().getSelectedIndex();
+               stockvalue.setText("");
+
+               presentValue.setText(String.valueOf(stock.value[companyIndex]));
+               havestock.setText(String.valueOf(wallet[companyIndex]));
+            }
+         }
+      }
+      );
+   }
+   
+   
    @FXML 
    public ListView<String> stocklist;
    ObservableList<String> list = FXCollections.observableArrayList();
-
    
    @FXML
    public void selectBuyButton(ActionEvent event) {
       int num = Integer.valueOf(stockvalue.getText());   
       
       seed = homeTradeSystem.buy(seed, wallet, companyIndex , stock.stockValue(companyIndex), num); 
+      homeTradeSystem.newseed = seed;
       
       havemoney.setText(String.valueOf(seed));
       havestock.setText(String.valueOf(wallet[companyIndex]));
-      
-      homeTradeSystem.newseed = seed;
       }
    
    @FXML
@@ -70,13 +95,10 @@ public class MainWindow implements Initializable {
       int num = Integer.valueOf(stockvalue.getText());      
       
       seed = homeTradeSystem.sell(seed, wallet, companyIndex, stock.stockValue(companyIndex), num); 
+      homeTradeSystem.newseed = seed;
       
       havemoney.setText(String.valueOf(seed));
       havestock.setText(String.valueOf(wallet[companyIndex]));
-      System.out.println(seed);
-      System.out.println(wallet[companyIndex]);
-      
-      homeTradeSystem.newseed = seed;
    }
    
    @FXML
@@ -90,7 +112,6 @@ public class MainWindow implements Initializable {
           try {
              root = (Parent)loader.load();
              stage = new Stage();
-             stage.setTitle("StockSimulator SSG");
              stage.setScene(new Scene(root));
              stage.show();
           } catch(IOException ex) {
@@ -98,63 +119,8 @@ public class MainWindow implements Initializable {
           closeStage();
          }
       }
-   
-   @FXML
-   public void chartOutput() {
-      final XYChart.Series<String, Number> series1 = new XYChart.Series<>();
-      series1.setName("2003");
-      series1.getData().add(new XYChart.Data<>("1", 26000));
-      series1.getData().add(new XYChart.Data<>("1", 25000));
-      
-      final XYChart.Series<String, Number> series2 = new XYChart.Series<>();
-      series2.getData().add(new XYChart.Data<>("2", 23000));
-      series2.getData().add(new XYChart.Data<>("1", 22000));
-      
-      chart.getData().addAll(series1, series2);
-   }
-   
-   @Override 
-   public void initialize(URL location, ResourceBundle resources) {
-      
-      stock.setting();
-      showname.setText(trader.nickname);
-      havemoney.setText(Integer.toString(seed));
-      
-      chartOutput();
-      
-      stocklist.setItems(FXCollections.observableArrayList(strArrayList));
-      stocklist.setOnMouseClicked(new EventHandler<MouseEvent>() {
-         @Override
-         public void handle(MouseEvent event) {
-                        
-            if(event.getClickCount()>=1) {
-               companyIndex = stocklist.getSelectionModel().getSelectedIndex();
-               stockvalue.setText("");
 
-               presentValue.setText(String.valueOf(stock.value[companyIndex]));
-               havestock.setText(String.valueOf(wallet[companyIndex]));
-            }
-         }
-      });
-   }
-
-   
    // elements
-
-   @FXML
-   private StackedBarChart<String, Number> chart;
-   @FXML
-   private TextField presentValue;
-   @FXML
-   private TextField havemoney;
-   @FXML
-   private TextField showname;
-   @FXML
-   private Button gameStartbtn;
-   @FXML
-   private TextField stockvalue;
-   @FXML
-   private TextField havestock;
    @FXML
    private Label trade;
    @FXML
@@ -162,7 +128,21 @@ public class MainWindow implements Initializable {
    @FXML
    private Button buy;
    @FXML
+   private Button sell;
+   @FXML
    private Button turnoverbtn;
    @FXML
-   private Button sell;
+   private Button gameStartbtn;
+   @FXML
+   private TextField showname;
+   @FXML
+   private TextField havemoney;
+   @FXML
+   private TextField havestock;
+   @FXML
+   private TextField stockvalue;
+   @FXML
+   private TextField presentValue;
+   @FXML
+   private StackedBarChart<String, Number> chart;
 }

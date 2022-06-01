@@ -70,7 +70,8 @@
                   </AnchorPane>
                   <AnchorPane layoutX="181.0" layoutY="18.0" prefHeight="91.0" prefWidth="305.0">
                      <children>
-                        <ImageView fx:id="printnews" fitHeight="82.0" fitWidth="269.0" layoutX="14.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="bad" fitHeight="55.0" fitWidth="343.0" layoutX="-11.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="good" fitHeight="55.0" fitWidth="343.0" layoutX="-11.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </AnchorPane>
                   <AnchorPane layoutX="7.0" layoutY="91.0" prefHeight="309.0" prefWidth="143.0">

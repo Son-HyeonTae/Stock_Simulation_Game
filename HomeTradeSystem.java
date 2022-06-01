@@ -2,23 +2,23 @@ package application;
 
 public class HomeTradeSystem extends StockGame {
 	
-	// create instance
+	// create instances
 	StockGame stockgame = new StockGame();
-	int wallet[] = stockgame.stock;
-
 	Market exchange = new Market();
+
+	// local variables
+	static int newseed;
+	int seed = 1000000;
+	int wallet[] = stockgame.stock;
 	String company[] = exchange.company;
 	
-	// local variable
-	int seed = 1000000;
-	static int newseed;
+	// local methods
 	                                                           //quantity
 	int buy(int seed, int[] wallet, int companyIndex, int value, int num) {
 		if (value * num <= 0 || value * num > seed ) {
 			return seed;
 		}
 		wallet[companyIndex] += num;
-		System.out.println("Trade success : " + company[companyIndex] + ", " + num + "주");
 		return seed -= value * num;
 	}
 	
@@ -27,7 +27,6 @@ public class HomeTradeSystem extends StockGame {
 			return seed;
 		}
 		wallet[companyIndex] -= num;
-		System.out.println("Trade success : " + company[companyIndex] + ", " + num + "주");
 		return seed += value * num;
 	}
 }

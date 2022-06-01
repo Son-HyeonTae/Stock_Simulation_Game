@@ -3,6 +3,7 @@ package application;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,23 +15,20 @@ import javafx.stage.Stage;
 
 public class StartWindow {
 	
+	// create instances
 	Stock stock = new Stock();
 	Trader trader = new Trader();
 	Market exchange = new Market();
 	
+	// local value
 	String inputValue;
-	
-	@FXML
-	private TextField getnickNameField;
-	
-	@FXML
-	private Button startButton;
 	
 	// close StartWindow
 	public void closeStage() {
 		Stage stagewc = (Stage) startButton.getScene().getWindow();
 			stagewc.close();
 	}
+	
 	
 	@FXML
 	public void getnickName(ActionEvent event) {
@@ -51,4 +49,10 @@ public class StartWindow {
 		}
 		closeStage();
 	}
+	
+	// elements
+	@FXML
+	private TextField getnickNameField;
+	@FXML
+	private Button startButton;
 }

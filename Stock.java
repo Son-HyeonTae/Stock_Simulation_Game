@@ -4,20 +4,25 @@ import java.util.Random;
 
 public class Stock extends Market {
 	
-	// create instance
-	StockGame stockgame = new StockGame();
+	// create instances
 	Random random = new Random();
+	StockGame stockgame = new StockGame();
 	
-	// local variable
+	// local variables
 	int waveCount = 5; // rotate 5 times to wave stock prices
-	int value[] = stockgame.stock;
 	int badStock, goodStock;
+	int value[] = stockgame.stock;
 	
+	// local methods
+	int stockValue(int i) {
+		return value[i];
+	}
+
 	void setNews() {
 		badStock = random.nextInt(value.length);
 		goodStock = random.nextInt(value.length);
 	}
-	
+
 	// value initialize
 	void setting() {
 		for (int i = 0; i<value.length; i++) {
@@ -55,10 +60,7 @@ public class Stock extends Market {
 	setNews();
 	}
 	
-	// return
-	int stockValue(int i) {
-		return value[i];
-	}
+	
 	
 	//-----------------------------------------------------
 	

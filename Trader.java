@@ -2,21 +2,15 @@ package application;
 
 public class Trader extends HomeTradeSystem {
 	
+	// local variable
 	static String nickname = null;
 	
 	public static void main(String[] args) {
 		
 		// create instance
-		HomeTradeSystem hts = new HomeTradeSystem();
 		Stock stock = new Stock();
 		
-		// local variable
- 		int seed = hts.seed;
- 		int wallet[] = hts.wallet;
- 		
- 		
  		//-----------------------------------------------------
- 		
  		
  		// back-end testing
  		stock.setting();
