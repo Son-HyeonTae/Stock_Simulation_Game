@@ -60,10 +60,6 @@ public class Stock extends Market {
 	setNews();
 	}
 	
-	
-	
-	//-----------------------------------------------------
-	
 	// back-end testing
 	void valueCheck() {
 		for(int i=0; i<value.length; i++) {
