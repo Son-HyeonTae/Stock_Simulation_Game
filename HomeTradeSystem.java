@@ -12,7 +12,6 @@ public class HomeTradeSystem extends StockGame {
 	int wallet[] = stockgame.stock;
 	String company[] = exchange.company;
 	
-	// local methods
 	                                                           //quantity
 	int buy(int seed, int[] wallet, int companyIndex, int value, int num) {
 		if (value * num <= 0 || value * num > seed ) {
