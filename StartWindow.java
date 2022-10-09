@@ -50,7 +50,6 @@ public class StartWindow {
 		closeStage();
 	}
 	
-	// elements
 	@FXML
 	private TextField getnickNameField;
 	@FXML
