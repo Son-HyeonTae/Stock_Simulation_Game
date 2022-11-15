@@ -3,7 +3,6 @@ Java Programming Team Proj.
 
 ## Eenvironment
 Open JDK 17
-
 JavaFX
 
 ## product backlog
